@@ -10,12 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_17_105323) do
+ActiveRecord::Schema.define(version: 2021_07_17_110442) do
 
   create_table "cart_items", force: :cascade do |t|
     t.integer "end_user_id"
     t.integer "item_id"
     t.integer "number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -36,6 +41,11 @@ ActiveRecord::Schema.define(version: 2021_07_17_105323) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_end_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_end_users_on_reset_password_token", unique: true
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "genres", force: :cascade do |t|
@@ -72,6 +82,11 @@ ActiveRecord::Schema.define(version: 2021_07_17_105323) do
     t.string "mail_number", null: false
     t.integer "invoice", default: 0, null: false
     t.integer "shipping_fee"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "relationships", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
