@@ -25,15 +25,25 @@
             </tr>
             <tr>
                 <td>
-                  <% if end_user_signed_in? %>
+                    <% if end_user_signed_in? %>
                     <%= form_with model:@cart_item,url:public_cart_items_path, local:true do |f| %>
                         <%= f.select :number, options_for_select((1..10).to_a),:prompt => "個数選択" %>
                         <%= f.hidden_field :item_id, value:  @item.id %>
                         <%= f.submit 'カートに⼊れる', class: "btn btn-success" %>
-                        <% end %>
+                    <% end %>
                     <% end %>
                 </td>
             </tr>
+            <div>
+                <%# if @item.end_user.id == current_user.id %>
+                <td>
+                    <%#= link_to "編集", edit_public_item_path, class:"btn btn-sm btn-success" %>
+                </td>
+                <td>
+                    <%#= link_to "削除", public_item_path(@item),  method: :delete, "data-confirm" => "本当に消しますか？", class:"btn btn-sm btn-danger" %>
+                </td>
+                <%# end %>
+            </div>
         </tbody>
     </table>
 </div>

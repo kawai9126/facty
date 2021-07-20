@@ -10,7 +10,7 @@
                 <%= current_end_user.nick_name %>さんでログイン中！！
                   <li><%= link_to ' マイページ',public_end_user_path(current_end_user) %></li>
                   <li><%= link_to ' 商品一覧',public_items_path %></li>
-                  <li><%#= link_to ' カート',public_cart_items_path %></li>
+                  <li><%= link_to ' カート',public_cart_items_path %></li>
                   <li><%= link_to ' ログアウト', destroy_end_user_session_path, method: :delete %></li>
                 <% elsif admin_signed_in? %>
                   <li><%= link_to ' 商品⼀覧 ',admin_items_path %></li>

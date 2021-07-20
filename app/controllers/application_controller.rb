@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
     when Admin
       root_path        
     when EndUser
-      root_path
+      public_items_path
     end
   end
 

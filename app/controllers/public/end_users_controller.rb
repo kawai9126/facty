@@ -16,4 +16,9 @@ class Public::EndUsersController < ApplicationController
         end
     end
 
+    private
+    def end_user_params
+     params.require(:end_user).permit(:nick_name, :user_name,:mail_number,:adress,:tel,:mail)
+    end
+
 end

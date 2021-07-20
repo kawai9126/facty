@@ -1,8 +1,8 @@
 class Public::ItemsController < ApplicationController
     
     def index
-    @items = Item.all
-    #@items = Item.page(params[:page])
+        @items = Item.all
+        #@items = Item.page(params[:page])　#雷追加後
     end
     def new
         @item = Item.new
@@ -13,7 +13,6 @@ class Public::ItemsController < ApplicationController
     def show
         @item = Item.find(params[:id])
         @cart_item = CartItem.new
-        #@genre = Genre.find(params[:id])
     end
     def create
         @item = Item.new(item_params)
@@ -26,6 +25,12 @@ class Public::ItemsController < ApplicationController
         redirect_to public_item_path(@item)
     end
     
+    def destroy
+        @item = Item.find(params[:id])
+        @item.destroy
+        redirect_to public_item_path
+    end
+    
     private
     def item_params
         params.require(:item).permit(:image, :name, :contents, :genre_id, :non_price, :is_sale)
@@ -33,12 +38,3 @@ class Public::ItemsController < ApplicationController
 
 end
 
-
-# def index
-#         @items = Item.page(params[:page]).reverse_order
-#         @totals = Item.all
-#     end
-#     def show
-#         @item = Item.find(params[:id])
-#         @cart_item = CartItem.new
-#     end

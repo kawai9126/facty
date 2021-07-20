@@ -1,5 +1,5 @@
 <h2>グッズ投稿ページ</h2>
-<div>
+  <div>
     
     <div>
     <%= form_with model: @item ,url: public_items_path, method: :post ,local:true do |f| %>
@@ -21,7 +21,7 @@
     
     <div>
       <label>ジャンル：</label>
-      <%#= f.collection_select  :genre_id,Genre.all,:id, :name , :prompt => "選択してください" %>
+      <%= f.collection_select  :genre_id,Genre.all,:id, :name , :prompt => "選択してください" %>
     </div>
     
     <div>
@@ -38,3 +38,4 @@
         <%= f.submit '新規登録', class: "btn_b btn-md btn-success" %>
         <% end %>
     </div>
+  </div>
