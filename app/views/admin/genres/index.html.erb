@@ -1,4 +1,4 @@
-<h2>ジャンル ⼀覧・追加</h2>
+<h2>グッズのジャンル ⼀覧・追加</h2>
     <div>
         <%= form_with model: @genre ,url: admin_genres_path ,local:true do |f| %>
         <div>
@@ -8,12 +8,12 @@
         </div>
         <% end %>
         <table>
-            <div>ジャンル</div>
+            <div>グッズのジャンル</div>
             <% @genres.each do |genre| %>
             <tr>
                 <td><%= genre.name %></td>
                 <td><%= link_to "編集する", edit_admin_genre_path(genre),data: {"turbolinks"=>false}, class: "btn btn-sm btn-success" %></td>
             </tr>
-        <% end %>
+            <% end %>
         </table>
     </div>

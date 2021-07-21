@@ -45,7 +45,6 @@ ActiveRecord::Schema.define(version: 2021_07_18_125544) do
     t.string "mail_number", null: false
     t.text "adress", null: false
     t.string "tel", null: false
-    t.boolean "is_enter", default: false, null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -56,6 +55,7 @@ ActiveRecord::Schema.define(version: 2021_07_18_125544) do
   end
 
   create_table "favorites", force: :cascade do |t|
+    t.integer "end_user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 2021_07_18_125544) do
     t.integer "non_price", null: false
     t.string "image_id", null: false
     t.boolean "is_sale", default: false, null: false
+    t.integer "end_user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

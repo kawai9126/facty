@@ -14,7 +14,7 @@
         <%= form.radio_button :adress_option, 0 , checked: true %>
         <%= form.label :ご自身の住所 %>
         <%= current_end_user.adress %>
-        <%= current_end_user.full_name %>
+        <%= current_end_user.user_name %>
     </div>
     <div>
         <%= form.radio_button :adress_option, 1 %>
@@ -28,8 +28,7 @@
         <div>　　　住所　　　　　　　<%= form.text_area :delivery_address %></div>
         <div>　　　宛名　　　　　　　<%= form.text_field :direction %></div>
     </div>
-
- <div>
- <%= form.submit '確認画面へ進む', class: "btn btn-primary" %>
- </div>
+    <div>
+    <%= form.submit '確認画面へ進む', class: "btn btn-primary" %>
+    </div>
  <% end %>

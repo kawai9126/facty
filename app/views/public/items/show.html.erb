@@ -27,7 +27,7 @@
                 <td>
                     <% if end_user_signed_in? %>
                     <%= form_with model:@cart_item,url:public_cart_items_path, local:true do |f| %>
-                        <%= f.select :number, options_for_select((1..10).to_a),:prompt => "個数選択" %>
+                        <%= f.select :number, options_for_select((1..10).to_a),:prompt => "いくつ購入しますか？" %>
                         <%= f.hidden_field :item_id, value:  @item.id %>
                         <%= f.submit 'カートに⼊れる', class: "btn btn-success" %>
                     <% end %>

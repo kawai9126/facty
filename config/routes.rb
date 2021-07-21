@@ -17,16 +17,11 @@ devise_for :end_users, controllers: {
   
 #ユーザー側  
   namespace :public do
-    resources :items,only: [:index,:show,:edit,:new,:create,:update]
-    resources :end_users,only: [:show,:edit,:update] do
-      member do
-        get 'user_exit'
-        patch 'update_exit'
-      end
-     end
+    resources :items,only: [:index,:show,:edit,:new,:create,:update,:destroy]
+    resources :end_users,only: [:index,:show,:edit,:update,:create] 
      resources :orders,only: [:index,:create,:show,:new] do
      collection do
-      get 'finish'
+      get 'thanks'
       post 'check'
      end
     end

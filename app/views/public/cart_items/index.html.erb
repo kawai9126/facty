@@ -16,7 +16,7 @@
          <%= f.select :number, options_for_select((1..10), {selected: cart.number} ) %>
          <%= f.submit '変更' %>
      　 <% end %>
-    <td><%= cart.add_tax_price.total %>円</td>
+    <td><%= cart.add_tax_price_total %>円</td>
     <td><%= link_to '削除', public_cart_item_path(cart), method: :delete, class: "btn btn-outline-danger" %></td>
     </tr>
     <% end %>

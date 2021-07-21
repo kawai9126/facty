@@ -16,9 +16,15 @@ class Public::ItemsController < ApplicationController
     end
     def create
         @item = Item.new(item_params)
-        @item.save
-        redirect_to public_item_path(@item)
+        @item.end_user_id = current_end_user.id
+        if @item.save
+        flash[:notice] = "投稿完了！！"
+        redirect_to public_item_path(@item.id)
+        else
+        render "index"
+        end
     end
+    
     def update
         @item = Item.find(params[:id])
         @item.update(item_params)
@@ -34,6 +40,9 @@ class Public::ItemsController < ApplicationController
     private
     def item_params
         params.require(:item).permit(:image, :name, :contents, :genre_id, :non_price, :is_sale)
+    end
+    def end_user_params
+        params.require(:end_user).permit(:nick_name, :user_name,:mail_number,:adress,:tel,:mail)
     end
 
 end

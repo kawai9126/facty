@@ -1,0 +1,41 @@
+<h1>注文情報</h1>
+    <div>
+        <table class="t_idou">
+            <tr>
+                <th>商品名</th>
+                <th>単価(税込)</th>
+                <th>数量</th>
+                <th>小計</th>
+            </tr>
+            <% @cart_items.each do |cart| %>
+            <tr>
+                <td><%= attachment_image_tag cart.item, :image, format: 'jpeg', size: "50x50" %>  <%= cart.item.name %></td>
+                <td><%= cart.item.add_tax_price.to_s(:delimited)%></td>
+                <td><%= cart.number %></td>
+                <td><%= cart.add_tax_price_total %></td>
+            </tr>
+            <% end %>
+        </table>
+        <table>
+            <tr>
+                <th>送料</th>
+                <td><%= session[:save_order]["shipping_fee"] %></td>
+            </tr>
+            <tr>
+                <th>商品合計</th>
+                <td><%= current_end_user.total_price %></td>
+            </tr>
+            <tr>
+                <th>請求金額</th>
+                <td><%= session[:save_order]["invoice"] %></td>
+            </tr>
+        </table>
+    </div>
+<div>
+    <h4>支払方法</h4>
+    <div><%= session[:save_order]["payment_method"] %></div>
+    <h4>お届け先</h4>
+    <div><%= session[:save_order]["mail_number"] %> <%= session[:save_order]["delivery_address"] %></div> 
+    <div><%= session[:save_order]["direction"]  %></div>
+</div>
+<%= button_to '確定する', public_orders_path, method: :post %>

@@ -26,7 +26,7 @@ class Public::OrdersController < ApplicationController
        if params[:order][:adress_option].to_i == 0
         session[:save_order][:mail_number] = current_end_user.mail_number
         session[:save_order][:delivery_address] = current_end_user.adress
-        session[:save_order][:direction] = current_end_user.full_name
+        session[:save_order][:direction] = current_end_user.user_name
        elsif params[:order][:adress_option].to_i == 1
         @add_order = ShippingAddress.find(params[:order][:shipping_addresses]) 
         session[:save_order][:mail_number] = @add_order.mail_number
@@ -52,7 +52,7 @@ class Public::OrdersController < ApplicationController
        end
        current_end_user.cart_items.destroy_all
        session[:save_order].clear
-       redirect_to finish_public_orders_path
+       redirect_to thanks_public_orders_path
     end
     
     def thanks
