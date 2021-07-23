@@ -1,0 +1,48 @@
+<div>
+    <table>
+        <tr>
+            <td>
+                <%= attachment_image_tag(@item, :image, size: "300x300", fallback: "no_image.jpg") %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <%#= link_to @user.nick_name, public_end_user_path(@user.id) %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <%= @item.name %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <%= @item.contents %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ￥<%= @item.add_tax_price.to_s(:delimited) %> 円 (税込)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <% if @item.is_sale == true %>
+                    販売中
+                <% else %>
+                    販売停止中
+                <% end %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <%= @item.created_at.strftime('%Y/%m/%d') %>
+            </td>
+        </tr>
+        <div>
+            <td>
+                <%#= link_to "削除", admin_item_path(@item),  method: :delete, "data-confirm" => "本当に消しますか？", class:"btn btn-sm btn-danger" %>
+            </td>
+        </div>
+    </table>
+</div>

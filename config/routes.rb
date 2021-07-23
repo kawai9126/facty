@@ -17,15 +17,18 @@ devise_for :end_users, controllers: {
   
 #ユーザー側  
   namespace :public do
-    resources :items,only: [:index,:show,:edit,:new,:create,:update,:destroy]
+    resources :items,only: [:index,:show,:edit,:new,:create,:update,:destroy] do
+        resource :comments, only: [:create, :destroy]
+        resource :favorites, only: [:create, :destroy]
+    end
     resources :end_users,only: [:index,:show,:edit,:update,:create] 
-     resources :orders,only: [:index,:create,:show,:new] do
+    resources :orders,only: [:index,:create,:show,:new] do
      collection do
       get 'thanks'
       post 'check'
      end
     end
-   resources :shipping_addresses,only: [:index,:destroy,:update,:edit,:create]
+    resources :shipping_addresses,only: [:index,:destroy,:update,:edit,:create]
     resources :cart_items,only: [:index,:destroy,:update,:create] do
      collection do
       delete 'destroy_all'
@@ -36,8 +39,8 @@ devise_for :end_users, controllers: {
 # 管理側
   namespace :admin do
     resources :genres,only: [:index,:edit,:update,:create]
-    resources :end_users,only: [:index,:edit,:show,:update]
-    resources :items,only: [:index,:edit,:show,:create,:update,:new]
+    resources :end_users,only: [:index,:show]
+    resources :items,only: [:index,:edit,:show,:create,:update,:destroy]
     resources :orders,only: [:index,:show,:update]
     resources :order_items,only: [:update]
     resources :adimin,only: [:index,:create,:destroy]

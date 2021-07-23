@@ -9,6 +9,8 @@ class EndUser < ApplicationRecord
   has_many :cart_items,dependent: :destroy
   has_many :orders,dependent: :destroy
   has_many :items, dependent: :destroy
+  has_many :comment, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   
   def total_price
     total = 0

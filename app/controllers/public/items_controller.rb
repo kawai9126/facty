@@ -1,8 +1,8 @@
 class Public::ItemsController < ApplicationController
     
     def index
-        @items = Item.all
-        #@items = Item.page(params[:page])　#雷追加後
+        @totals = Item.all
+        @items = Item.page(params[:page]).reverse_order
     end
     def new
         @item = Item.new
@@ -12,6 +12,7 @@ class Public::ItemsController < ApplicationController
     end
     def show
         @item = Item.find(params[:id])
+        @user = @item.end_user
         @cart_item = CartItem.new
     end
     def create
@@ -19,9 +20,9 @@ class Public::ItemsController < ApplicationController
         @item.end_user_id = current_end_user.id
         if @item.save
         flash[:notice] = "投稿完了！！"
-        redirect_to public_item_path(@item.id)
+        redirect_to public_item_path(@item)
         else
-        render "index"
+        render :index
         end
     end
     

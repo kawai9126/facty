@@ -1,0 +1,34 @@
+<h2>配送先登録 / ⼀覧</h2>
+    <table>
+    <%= form_with model: @shipping_address ,url: public_shipping_addresses_path ,local:true do |f| %>
+        <tr>
+            <th>郵便番号</th>
+            <td><%= f.text_field :mail_number %></t>
+        </tr>
+        <tr>
+            <th>住所</th>
+            <td><%= f.text_area :delivery_address %></td>
+        </tr>
+        <tr>
+            <th>宛名</th>
+            <td><%= f.text_field :direction %></td>
+        </tr>
+          <div><%= f.submit '新規登録', class: "btn btn-success" %></div>
+    <% end %>
+  
+    <table>
+        <tr>
+          <th>郵便番号</th>
+          <th>住所</th>
+          <th>宛名</th>
+          <th></th>
+        </tr>
+        <% @shipping_addresses.each do |sa| %>
+        <tr>
+          <td><%= sa.mail_number %></td>
+          <td><%= sa.delivery_address %></td>
+          <td><%= sa.direction %></td>
+          <td><%= link_to "編集する", edit_public_shipping_address_path(sa),data: {"turbolinks"=>false}, class: "btn btn-success" %> <%= link_to "削除する", public_shipping_address_path(sa),method: :delete, class: "btn btn-danger" %></td>
+        </tr>
+        <% end %>
+    </table>

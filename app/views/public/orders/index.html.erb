@@ -29,4 +29,25 @@
         </tr>
       <% end %>
     </table>
+    <h2>販売履歴一覧</h2>
+    <table>
+        <tr>
+            <td>購入日時</td>
+            <td>購入者</td>
+            <td>注文個数</td>
+        </tr>
+        <% @orders.each do |order| %>
+        <tr>
+            <td><%= link_to order.created_at.strftime('%Y/%m/%d %H:%M:%S'), admin_order_path(order.id) %></td>
+            <td><%= order.end_user.user_name %></td>
+            <td><%= order.total_order %></td>
+            <td><%= order.order_status %></td>
+        </tr>
+        <% end %>
+    </table>
+      <div>
+        <%#= paginate @orders %>
+      </div>
+  </div>
+
 </div>

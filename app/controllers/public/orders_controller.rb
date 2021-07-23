@@ -23,23 +23,20 @@ class Public::OrdersController < ApplicationController
         session[:save_order][:shipping_fee] = @shipping_fee
         session[:save_order][:invoice] = @shipping_fee + current_end_user.total_price
         @cart_items = current_end_user.cart_items
-       if params[:order][:adress_option].to_i == 0
+        if params[:order][:adress_option].to_i == 0
         session[:save_order][:mail_number] = current_end_user.mail_number
         session[:save_order][:delivery_address] = current_end_user.adress
         session[:save_order][:direction] = current_end_user.user_name
-       elsif params[:order][:adress_option].to_i == 1
+        elsif params[:order][:adress_option].to_i == 1
         @add_order = ShippingAddress.find(params[:order][:shipping_addresses]) 
         session[:save_order][:mail_number] = @add_order.mail_number
         session[:save_order][:delivery_address] = @add_order.delivery_address 
         session[:save_order][:direction] = @add_order.direction 
-       elsif params[:order][:adress_option].to_i == 2
+        elsif params[:order][:adress_option].to_i == 2
         session[:save_order][:mail_number] = order_params[:mail_number]
         session[:save_order][:delivery_address] = order_params[:delivery_address] 
         session[:save_order][:direction] = order_params[:direction]
-       end
-       
-       
-      
+        end
     end
 
     def create

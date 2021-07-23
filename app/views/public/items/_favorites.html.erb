@@ -1,0 +1,12 @@
+<% if item.favorited_by?(current_end_user) %>
+    <p>
+        <%= link_to public_item_favorites_path(item),remote: true, method: :delete do %>
+        ♥<%= item.favorites.count %>
+        <% end %>
+    </p>
+    <% else %>
+    <p>
+        <%= link_to public_item_favorites_path(item),remote: true, method: :post do %>
+        ♡<%= item.favorites.count %>
+    <% end %>
+<% end %>

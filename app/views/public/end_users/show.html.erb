@@ -1,43 +1,46 @@
 <h2>マイページ</h2>
 
-    
+    <% if @user.id == current_end_user.id %>
     <div>
-        登録情報<%= link_to "編集する", edit_public_end_user_path(@end_user), class: "btn btn-sm  btn-success" %>
+        登録情報の<%= link_to "編集する", edit_public_end_user_path(@end_user), class: "btn btn-sm  btn-success" %>
     </div>
+    <% end %>
     
     <table>
         <tr>
             <th>ニックネーム</th>
-            <td><%= @end_user.nick_name %></td>
-          </tr>
+            <td><%= @user.nick_name %></td>
+        </tr>
+        <%if @user.id == current_end_user.id %>
     
         <tr>
             <th>名前</th>
-            <td><%= @end_user.user_name %></td>
+            <td><%= @user.user_name %></td>
         </tr>
     
         <tr>
             <th>郵便番号</th>
-            <td><%= @end_user.mail_number %></td>
+            <td><%= @user.mail_number %></td>
         </tr>
     
         <tr>
             <th>住所</th>
-            <td><%= @end_user.adress %></td>
+            <td><%= @user.adress %></td>
         </tr>
     
         <tr>
             <th>電話番号</th>
-            <td><%= @end_user.tel %></td>
+            <td><%= @user.tel %></td>
         </tr>
     
         <tr>
             <th>メールアドレス</th>
-            <td><%= @end_user.email %></td>
+            <td><%= @user.email %></td>
         </tr>
+        <% end %>
     </table>
     <table>
-    <div>投稿一覧</div>
+    <h1>投稿一覧</h1>
     <% @items.each do |item| %>
     <div>
         <div>
@@ -46,9 +49,6 @@
                 <%= attachment_image_tag item, :image, size: "400x300", fallback: "no_image.jpg"%>
                 <% end %>
             </div>
-            <div>
-                <%#= item.end_user.nick_name %>
-            </div>
             <p>
                 <%= link_to item.name, public_item_path(item.id) %>
             </p>
@@ -56,19 +56,17 @@
                 ¥<%= item.non_price.to_s(:delimited) %>
             </p>
             <p>
-                投稿日時：<%= item.created_at.strftime('%Y/%m/%d') %>
+                <%= item.created_at.strftime('%Y/%m/%d') %>
             </p>
         </div>
     </div>
     <% end %>
 
 <div>
-    発送先
+    発送先<%= link_to '追加',public_shipping_addresses_path, class: "btn btn-sm btn-primary" %>
 </div>
 
 <div>
-    注文履歴
-</div>
-
+    注文履歴<%= link_to '一覧を見る',public_orders_path, class: "btn btn-sm btn-primary" %>
 </div>
 
