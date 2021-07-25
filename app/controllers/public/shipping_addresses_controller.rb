@@ -13,7 +13,7 @@ class Public::ShippingAddressesController < ApplicationController
         @shipping_address = ShippingAddress.new(sa_params)
         @shipping_address.end_user_id = current_end_user.id
         @shipping_address.save
-        redirect_to public_s_hipping_addresses_path
+        redirect_to public_shipping_addresses_path
     end 
   
     def update

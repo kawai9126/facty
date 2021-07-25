@@ -25,9 +25,9 @@
                 販売停止中
             <% end %>
         </p>
-        <!--<p class="item_<%#= item.id %>">-->
-        <!--    <%#= render 'favorites', item: item %>-->
-        <!--</p>-->
+        <div class="item_<%= item.id %>">
+            <%= render 'favorites', item: item %>
+        </div>
         <p>
             <%= item.created_at.strftime('%Y/%m/%d') %>
         </p>
@@ -36,5 +36,5 @@
 </div>
 <% end %>
 <div>
-    <%#= paginate @items %>
+    <%= paginate @items %>
 </div>

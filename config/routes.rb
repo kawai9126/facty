@@ -24,6 +24,7 @@ devise_for :end_users, controllers: {
     resources :end_users,only: [:index,:show,:edit,:update,:create] 
     resources :orders,only: [:index,:create,:show,:new] do
      collection do
+      get 'buyer'
       get 'thanks'
       post 'check'
      end

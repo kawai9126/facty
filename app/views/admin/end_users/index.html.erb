@@ -3,6 +3,7 @@
     <table class="table_en_in">
         <tr>
             <th>会員ID</th>
+            <th>ニックネーム</th>
             <th>氏名</th>
             <th>メールアドレス</th>
         </tr>
@@ -10,6 +11,7 @@
         <% @end_users.each do |end_user| %>
         <tr>
             <td><%= end_user.id %></td>
+            <td><%= end_user.nick_name %></td> 
             <td><%= link_to end_user.user_name, admin_end_user_path(end_user) %></td>
             <td><%= end_user.email %></td>
       　<td>

@@ -8,6 +8,7 @@ class CreateOrders < ActiveRecord::Migration[5.2]
       t.string :mail_number, null: false
       t.integer :invoice, default: 0, null: false
       t.integer :shipping_fee
+      t.integer :item_id, null: false
       
       t.timestamps
     end

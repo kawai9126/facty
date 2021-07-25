@@ -1,9 +1,15 @@
 class Public::OrdersController < ApplicationController
     before_action :authenticate_end_user!
-    def index
+    def index  # 購入履歴
         @end_user = current_end_user
         @orders = @end_user.orders.all
         @cart_items = @end_user.cart_items.all
+       
+        @buyers = EndUser.where(id: Order.where(item_id: current_end_user.items.ids).pluck('end_user_id'))
+        @items =  Order.includes(:item).where(items: {end_user_id: current_end_user})
+    end
+    def buyer
+        @items =  Order.includes(:item).where(items: {end_user_id: current_end_user})
     end
     
     def show
@@ -19,10 +25,11 @@ class Public::OrdersController < ApplicationController
         session[:save_order] = Order.new()
         session[:save_order] = order_params
         session[:save_order][:end_user_id] = current_end_user.id
-        @shipping_fee = 800.to_i
+        @shipping_fee = 500.to_i
         session[:save_order][:shipping_fee] = @shipping_fee
         session[:save_order][:invoice] = @shipping_fee + current_end_user.total_price
         @cart_items = current_end_user.cart_items
+        session[:save_order][:item_id] = current_end_user.cart_items.first.item_id
         if params[:order][:adress_option].to_i == 0
         session[:save_order][:mail_number] = current_end_user.mail_number
         session[:save_order][:delivery_address] = current_end_user.adress
@@ -42,10 +49,11 @@ class Public::OrdersController < ApplicationController
     def create
         @order = Order.new(session[:save_order])
         @order.save
-        ShippingAddress.find_or_create_by(end_user_id: current_end_user.id,direction: @order.direction,delivery_address: @order.delivery_address,mail_number: @order.mail_number)
+
+        ShippingAddress.find_or_create_by!(end_user_id: current_end_user.id,direction: @order.direction,delivery_address: @order.delivery_address,mail_number: @order.mail_number)
         @cart_items = current_end_user.cart_items
         @cart_items.each do |cart| 
-        OrderItem.create(item_id: cart.item.id, order_id: @order.id, number: cart.number, tax_included_price: cart.item.add_tax_price )
+        OrderItem.create!(item_id: cart.item.id, order_id: @order.id, number: cart.number, tax_included_price: cart.item.add_tax_price )
        end
        current_end_user.cart_items.destroy_all
        session[:save_order].clear

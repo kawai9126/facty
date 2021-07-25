@@ -14,6 +14,7 @@ class Public::ItemsController < ApplicationController
         @item = Item.find(params[:id])
         @user = @item.end_user
         @cart_item = CartItem.new
+        @comment = Comment.new
     end
     def create
         @item = Item.new(item_params)

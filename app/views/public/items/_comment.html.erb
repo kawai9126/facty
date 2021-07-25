@@ -1,16 +1,16 @@
-<!--<p>コメント件数：<%#= item.comments.count %></p>-->
-    <% item.comments.each do |comment| %>
-<p>
+<p>コメント件数：<%= item.comments.count %></p>
+<% item.comments.each do |comment| %>
+  <p>
     <%= comment.end_user.nick_name %>
     <%= comment.comment %>
-</p>
-    <% if comment.end_user == current_end_user %>
-<td>
-    <%= link_to "削除", item_comment_path(comment.item.id, comment.id),remote: true, method: :delete, class:"btn btn-sm btn-danger" %>
-</td>
-    <% end %>
-    <% end %>
-    <%#= form_with(model:[item, comment], remote: true) do |f| %>
-        <%#= f.text_area :comment, rows:'5',placeholder: "" %>
-        <%#= f.submit "送信する" %>
-    <%# end %>
+  </p>
+  <% if comment.end_user == current_end_user %>
+    <div>
+      <%= link_to "削除", item_comment_path(comment.item.id, comment.id),remote: true, method: :delete, class:"btn btn-sm btn-danger" %>
+    </div>
+  <% end %>
+<% end %>
+<%= form_with(model:[item, comment], remote: true) do |f| %>
+  <%= f.text_area :comment, rows:'5',placeholder: "" %>
+  <%= f.submit "コメントする" %>
+<% end %>

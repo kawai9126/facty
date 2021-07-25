@@ -1,6 +1,10 @@
 class Order < ApplicationRecord
     has_many :order_items
     belongs_to :end_user
+    belongs_to :item
+    
+    
+    enum payment_method: {"クレジット":0,"銀行":1}
     
     def total_price #商品合計をメソッドで計算
         total = 0
