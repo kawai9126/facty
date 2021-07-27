@@ -3,13 +3,12 @@ class Public::OrdersController < ApplicationController
     def index  # 購入履歴
         @end_user = current_end_user
         @orders = @end_user.orders.all
-        @cart_items = @end_user.cart_items.all
        
         @buyers = EndUser.where(id: Order.where(item_id: current_end_user.items.ids).pluck('end_user_id'))
         @items =  Order.includes(:item).where(items: {end_user_id: current_end_user})
     end
-    def buyer
-        @items =  Order.includes(:item).where(items: {end_user_id: current_end_user})
+    def buyer #販売履歴
+        @orders = Order.includes(:item).where(items: {end_user_id: current_end_user}).reverse_order
     end
     
     def show
@@ -29,7 +28,7 @@ class Public::OrdersController < ApplicationController
         session[:save_order][:shipping_fee] = @shipping_fee
         session[:save_order][:invoice] = @shipping_fee + current_end_user.total_price
         @cart_items = current_end_user.cart_items
-        session[:save_order][:item_id] = current_end_user.cart_items.first.item_id
+        #session[:save_order][:item_id] = current_end_user.cart_items.first.item_id
         if params[:order][:adress_option].to_i == 0
         session[:save_order][:mail_number] = current_end_user.mail_number
         session[:save_order][:delivery_address] = current_end_user.adress
@@ -48,12 +47,18 @@ class Public::OrdersController < ApplicationController
 
     def create
         @order = Order.new(session[:save_order])
-        @order.save
-
-        ShippingAddress.find_or_create_by!(end_user_id: current_end_user.id,direction: @order.direction,delivery_address: @order.delivery_address,mail_number: @order.mail_number)
+        #@order.save
+        #ShippingAddress.find_or_create_by!(end_user_id: current_end_user.id,direction: @order.direction,delivery_address: @order.delivery_address,mail_number: @order.mail_number)
+        @cart_items = current_end_user.cart_items
+        save_order = session[:save_order].symbolize_keys
+        ShippingAddress.find_or_create_by!(end_user_id: current_end_user.id,direction: save_order[:direction],delivery_address: save_order[:delivery_address],mail_number: save_order[:mail_number])
         @cart_items = current_end_user.cart_items
         @cart_items.each do |cart| 
-        OrderItem.create!(item_id: cart.item.id, order_id: @order.id, number: cart.number, tax_included_price: cart.item.add_tax_price )
+          order = Order.new(session[:save_order])
+          order.item_id = cart.item_id
+          if order.save 
+            OrderItem.create!(item_id: cart.item.id, order_id: order.id, number: cart.number, tax_included_price: cart.item.add_tax_price )
+          end
        end
        current_end_user.cart_items.destroy_all
        session[:save_order].clear

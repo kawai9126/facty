@@ -1,29 +1,60 @@
 <!DOCTYPE html>
 <html>
     <header>
-    　  <div>
-            <%= link_to "facty", root_path %>
-    　　</div>
-    　  <div>
-            <ul>
+      　<div class="logo">
+          <%= link_to root_path do %>
+          <%= image_tag "logo.png" %>
+    　  　  <% end %>
+　　    </div>
+　　    <div class="navbar_list">
+            <ul class="navbar">
                 <% if end_user_signed_in? %>
-                <%= current_end_user.nick_name %>さんでログイン中！！
-                  <li><%= link_to ' マイページ',public_end_user_path(current_end_user) %></li>
-                  <li><%= link_to ' 商品一覧',public_items_path %></li>
-                  <li><%= link_to ' カート',public_cart_items_path %></li>
-                  <li><%= link_to ' ログアウト', destroy_end_user_session_path, method: :delete %></li>
+                  <li>
+                    <%= current_end_user.nick_name %>さんでログイン中！！
+                  </li>
+                  <li> 
+                    <%= link_to 'マイページ',public_end_user_path(current_end_user) %>
+                  </li>
+                  <li> 
+                    <%= link_to '商品一覧',public_items_path %>
+                  </li>
+                  <li> 
+                    <%= link_to 'カート',public_cart_items_path %>
+                  </li>
+                  <li> 
+                    <%= link_to 'ログアウト', destroy_end_user_session_path, method: :delete %>
+                  </li>
                 <% elsif admin_signed_in? %>
-                  <li><%= link_to ' 商品⼀覧 ',admin_items_path %></li>
-                  <li><%= link_to ' 会員⼀覧 ', admin_end_users_path %></li>
-                  <li><%= link_to ' ジャンル⼀覧 ',admin_genres_path %></li>
-                  <li><%= link_to ' ログアウト', destroy_admin_session_path, method: :delete %></li>
+                  <li> 
+                    <%= link_to '商品⼀覧 ',admin_items_path %>
+                  </li>
+                  <li>
+                    <%= link_to '注文履歴一覧 ',admin_orders_path %>
+                  </li>
+                  <li> 
+                    <%= link_to '会員⼀覧 ', admin_end_users_path %>
+                  </li>
+                  <li> 
+                    <%= link_to 'ジャンル⼀覧 ',admin_genres_path %>
+                  </li>
+                  <li> 
+                    <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
+                  </li>
                 <% else %>
                 <!--ログインしてないとき-->
-                  <li><%= link_to ' 商品一覧', public_items_path %></li>
-                  <li><%= link_to ' 新規登録', new_end_user_registration_path %></li>
-                  <li><%= link_to ' ログイン', new_end_user_session_path %></li>
+                  <li> 
+                    <%= link_to ' 商品一覧', public_items_path %>
+                  </li>
+                  <li> 
+                    <%= link_to ' 新規登録', new_end_user_registration_path %>
+                  </li>
+                  <li> 
+                    <%= link_to ' ログイン', new_end_user_session_path %>
+                  </li>
                 <% end %>
-        　  </ul>
-    　　</div>
+        　   </ul>
+        　</div>
+        </div>
+    　</nav>
     </header>
 </html>

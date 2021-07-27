@@ -1,6 +1,7 @@
 class Public::ItemsController < ApplicationController
     
     def index
+        flash.now[:alert] = ""
         @totals = Item.all
         @items = Item.page(params[:page]).reverse_order
     end
@@ -15,6 +16,7 @@ class Public::ItemsController < ApplicationController
         @user = @item.end_user
         @cart_item = CartItem.new
         @comment = Comment.new
+        @comments = @item.comments
     end
     def create
         @item = Item.new(item_params)
@@ -23,7 +25,8 @@ class Public::ItemsController < ApplicationController
         flash[:notice] = "投稿完了！！"
         redirect_to public_item_path(@item)
         else
-        render :index
+        flash.now[:alert] = '未入力の箇所があります'
+        render :new
         end
     end
     
@@ -36,7 +39,7 @@ class Public::ItemsController < ApplicationController
     def destroy
         @item = Item.find(params[:id])
         @item.destroy
-        redirect_to public_item_path
+        redirect_to public_items_path
     end
     
     private

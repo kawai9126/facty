@@ -1,5 +1,5 @@
-<h2><%= @end_user.nick_name %>|<%= @end_user.user_name %>さんの会員詳細</h2>
-<table>
+<h2 class='user_show'><%= @end_user.nick_name %>|<%= @end_user.user_name %>さんの会員詳細</h2>
+<table class='user_show'>
     <tr>
         <th>会員ID</th>
         <td><%= @end_user.id %></td>
@@ -24,7 +24,7 @@
   　     <th>メールアドレス</th>
   　     <td><%= @end_user.email %></td>
     </tr>
-    <tr>
-        <td><%= link_to '注文履歴一覧を見る', admin_orders_path(@end_user), class: "btn btn-sm  btn-primary" %></td>
-    </tr>
 </table>
+<p class='user_show_btn'>
+    <%= link_to '注文履歴一覧を見る', admin_orders_path(@end_user), class: "btn btn-sm  btn-primary" %>
+</p>

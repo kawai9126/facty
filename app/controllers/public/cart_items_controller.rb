@@ -7,11 +7,11 @@ class Public::CartItemsController < ApplicationController
         
     end
 
-    def destroy
-        @cart_item = CartItem.find(params[:id])
-        @cart_item.destroy
-        redirect_to public_cart_items_path
-    end
+    # def destroy
+    #     @cart_item = CartItem.find(params[:id])
+    #     @cart_item.destroy
+    #     redirect_to public_cart_items_path
+    # end
 
     def update
         @cart_item = CartItem.find(params[:id])
@@ -20,14 +20,28 @@ class Public::CartItemsController < ApplicationController
     end
 
     def create
-        if CartItem.where(end_user_id: current_end_user, item_id: params[:cart_item][:item_id]).exists?
-            render :new
+        
+        
+        # if CartItem.where(end_user_id: current_end_user, item_id: params[:cart_item][:item_id]).exists?
+        #     render :index
+        # end
+        
+        cart_item = CartItem.where(end_user_id: current_end_user.id)
+        if cart_item.present?
+           flash[:notice] = 'すでにカートに商品が入っています！'
+           redirect_to public_item_path(params[:cart_item][:item_id])
+           return 
         end
+        
         @cart_item = CartItem.new(cart_item_params)
         @cart_item.end_user_id = current_end_user.id
-  
-        @cart_item.save
+        
+        if @cart_item.save
         redirect_to public_cart_items_path
+        else
+        flash[:notice] = '個数を選択してください'
+        redirect_to public_item_path(@cart_item.item_id)
+        end
     end
 
     def destroy_all

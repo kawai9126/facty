@@ -1,16 +1,24 @@
-<p>コメント件数：<%= item.comments.count %></p>
+<p class='comment'>コメント件数：<%= item.comments.count %></p>
 <% item.comments.each do |comment| %>
-  <p>
-    <%= comment.end_user.nick_name %>
-    <%= comment.comment %>
-  </p>
+  <table class='comment'>
+    <tr>
+      <td class='comment_name'>
+        <%= comment.end_user.nick_name %>
+      </td>
+      <td>
+        <%= comment.comment %>
+      </td>
   <% if comment.end_user == current_end_user %>
-    <div>
-      <%= link_to "削除", item_comment_path(comment.item.id, comment.id),remote: true, method: :delete, class:"btn btn-sm btn-danger" %>
-    </div>
+      <td>
+        <%= link_to "削除", public_item_comment_path(comment.item.id, comment.id),local: true, method: :delete, class:"btn btn-sm btn-danger" %>
+      </td>
+    </tr>
+  </table>
   <% end %>
 <% end %>
-<%= form_with(model:[item, comment], remote: true) do |f| %>
+<div style="text-align:center">
+<%= form_with(model: comment, method: 'POST', local: true, url: public_item_comments_path(item.id)) do |f| %>
   <%= f.text_area :comment, rows:'5',placeholder: "" %>
   <%= f.submit "コメントする" %>
+</div>
 <% end %>

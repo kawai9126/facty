@@ -1,6 +1,6 @@
-<h2>配送先登録 / ⼀覧</h2>
-    <table>
+<h2 class='sipping_index'>配送先登録 / ⼀覧</h2>
     <%= form_with model: @shipping_address ,url: public_shipping_addresses_path ,local:true do |f| %>
+    <table class='sipping_index'>
         <tr>
             <th>郵便番号</th>
             <td><%= f.text_field :mail_number %></t>
@@ -13,10 +13,15 @@
             <th>宛名</th>
             <td><%= f.text_field :direction %></td>
         </tr>
-          <div><%= f.submit '新規登録', class: "btn btn-success" %></div>
+        <tr>
+            <td>
+                <%= f.submit '新規登録', class: "btn btn-success" %>
+            </td>
+        </tr>
+    </table>
     <% end %>
   
-    <table>
+    <table class='sipping_index'>
         <tr>
           <th>郵便番号</th>
           <th>住所</th>

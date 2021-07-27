@@ -1,76 +1,83 @@
 <div>
-    <table>
-        <div>
-            <tr>
-                <td>
-                    <%= link_to public_item_path(@item.id) do %>
-                    <%= attachment_image_tag @item, :image, size: "300x300", fallback: "no_image.jpg"%>
-                    <% end %>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <%= link_to @user.nick_name, public_end_user_path(@user.id) %>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <%= @item.name %>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <%= @item.contents %>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    ￥<%= @item.add_tax_price.to_s(:delimited) %> 円 (税込)<!--税込価格を表示するためitem.rbで掛け算するアクションを記載してます-->
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <% if @item.is_sale == true %>
-                        販売中
-                    <% else %>
-                        販売停止中
-                    <% end %>
-                </td>
-            </tr>
-            <tr>
-                <!--<td class="item_<%#= item.id %>">-->
-                <!--    <%#= render 'favorites', item: item %>-->
-                <!--</td>-->
-            </tr>
-            <tr>
-                <td>
-                    <%= @item.created_at.strftime('%Y/%m/%d') %>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <% if end_user_signed_in? %>
-                    <%= form_with model:@cart_item,url:public_cart_items_path, local:true do |f| %>
-                        <%= f.select :number, options_for_select((1..10).to_a),:prompt => "いくつ購入しますか？" %>
-                        <%= f.hidden_field :item_id, value:  @item.id %>
-                        <%= f.submit 'カートに⼊れる', class: "btn btn-success" %>
-                    <% end %>
-                    <% end %>
-                </td>
-            </tr>
-        </div>
-        <div>
+    <table class='item_show'>
+        <tr>
+            <td>
+                <%= link_to public_item_path(@item.id) do %>
+                <%= attachment_image_tag @item, :image, size: "300x300", fallback: "no_image.jpg"%>
+                <% end %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <%= link_to @user.nick_name, public_end_user_path(@user.id) %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <%= @item.name %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <%= @item.contents %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ￥<%= @item.add_tax_price.to_s(:delimited) %> 円 (税込)<!--税込価格を表示するためitem.rbで掛け算するアクションを記載してます-->
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <% if @item.is_sale %>
+                    販売中
+                <% else %>
+                    販売停止中
+                <% end %>
+            </td>
+        </tr>
+        <tr>
+            <td class="item_<%= @item.id %>">
+                <%= render 'favorites', item: @item %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <%= @item.created_at.strftime('%Y/%m/%d') %>
+            </td>
+        </tr>
+        <% if @item.is_sale %>
+        <tr>
+            <td>
+                <% if end_user_signed_in? %>
+                <%= form_with model:@cart_item,url:public_cart_items_path, local:true do |f| %>
+                    <%= f.select :number, options_for_select((1..10).to_a),:prompt => "いくつ購入しますか？" %>
+                    <%= f.hidden_field :item_id, value:  @item.id %>
+                    <%= f.submit 'カートに⼊れる', class: "btn btn-success" %>
+                <% end %>
+                <% end %>
+            </td>
+        </tr>
+        <% end %>
+        <% if end_user_signed_in? %>
             <% if @item.end_user.id == current_end_user.id %>
-            <td>
+            <tr>
+                <td>
                 <%= link_to "編集", edit_public_item_path, class:"btn btn-sm btn-success" %>
-            </td>
-            <td>
-                <%= link_to "削除", public_item_path(@item),  method: :delete, "data-confirm" => "本当に消しますか？", class:"btn btn-sm btn-danger" %>
-            </td>
+                </td>
+                <td>
+                    <%= link_to "削除", public_item_path(@item),  method: :delete, "data-confirm" => "本当に消しますか？", class:"btn btn-sm btn-danger" %>
+                </td>
+            </tr>
             <% end %>
-        </div>
+        <% else %>
+        <% end %>
+    </table>
+    <% if end_user_signed_in? %>
+    <div class="item_show">
         <div class="comment_<%= @item.id %>">
             <%= render 'comment', item: @item, comment: @comment %>
         </div>
-    </table>
+    </div>
+    <% end %>
 </div>

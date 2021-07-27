@@ -1,31 +1,21 @@
-<div>
-<h2>注⽂履歴⼀覧</h2>
-    <table>
-        <tr>
-            <th>注文日</th>
-            <th>配送先</th>
-            <th>注文商品</th>
-            <th>支払金額</th>
-            <th>注文詳細</th>
-        </tr>
-      <% @orders.each do |order| %>
-        <tr>
-            <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
-            <td>
-                <div>
-                  〒<%= order.mail_number %><br>
-                  <%= order.delivery_address %><br>
-                  <%= order.direction %> <br>
-                </div>
-            </td>
-            <td>
-                <% @order_items = order.order_items %>
-                <% @order_items.each do |order_item| %>
-                <%= order_item.item.name %><br>
-                <% end %>
-            </td>
-              <td><%= order.invoice %></td>
-              <td><%= link_to '表示する', public_order_path(order),class: "btn btn-primary" %></td>
-        </tr>
-      <% end %>
-    </table>
+<h2 class='order_index'>注⽂履歴⼀覧</h2>
+<table class='order_index'>
+    <tr>
+        <th>注文日</th>
+        <th>配送先</th>
+        <th>支払金額</th>
+        <th>注文詳細</th>
+    </tr>
+    <% @orders.each do |order| %>
+    <tr>
+        <td class='order_index_info'><%= order.created_at.strftime('%Y/%m/%d') %></td>
+        <td class='order_index_info'>
+              〒<%= order.mail_number %><br>
+              <%= order.delivery_address %><br>
+              <%= order.direction %> <br>
+        </td>
+        <td class='order_index_info'><%= order.invoice %></td>
+        <td class='order_index_info'><%= link_to '表示する', public_order_path(order),class: "btn btn-primary" %></td>
+    </tr>
+    <% end %>
+</table>

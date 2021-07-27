@@ -1,20 +1,24 @@
-<h2>販売履歴一覧</h2>
-    <table>
-        <tr>
+<h2 class='order_buyer'>販売履歴一覧</h2>
+    <table class='order_buyer'>
+        <tr class='order_buyer_info'>
             <td>購入日時</td>
             <td>ニックネーム</td>
             <td>購入者</td>
             <td>住所</td>
             <td></td>
+            <td>購入品</td>
+            <td>個数</td>
         </tr>
-        <% @items.each do |item| %>
-        <tr>
-            <td><%= item.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
-            <td><%= item.end_user.nick_name %></td>
-            <td><%= item.end_user.user_name %></td>
-             <td><%= item.end_user.mail_number %></td>
-            <td><%= item.end_user.adress %></td>
-            <td><%= item.item.name %></td>
+        <% @orders.each do |order| %>
+          
+        <tr class='order_buyer_info'>
+            <td class='order_buyer_info'><%= order.created_at.strftime('%Y/%m/%d') %></td>
+            <td class='order_buyer_info'><%= order.end_user.nick_name %></td>
+            <td class='order_buyer_info'><%= order.end_user.user_name %></td>
+            <td class='order_buyer_info'>〒<%= order.end_user.mail_number %></td>
+            <td class='order_buyer_info'><%= order.end_user.adress %></td>
+            <td class='order_buyer_info'><%= order.item.name %></td>
+            <td class='order_buyer_info'><%= order.order_items.first.number %></td>
         </tr>
         <% end %>
     </table>

@@ -1,6 +1,6 @@
-<h1>注文情報</h1>
+<h1 class='order_check'>注文情報</h1>
     <div>
-        <table class="t_idou">
+        <table class='order_check'>
             <tr>
                 <th>商品名</th>
                 <th>単価(税込)</th>
@@ -16,7 +16,7 @@
             </tr>
             <% end %>
         </table>
-        <table>
+        <table class='order_check'>
             <tr>
                 <th>送料</th>
                 <td><%= session[:save_order]["shipping_fee"] %></td>
@@ -31,7 +31,7 @@
             </tr>
         </table>
     </div>
-<div>
+<div class='order_check'>
     <h4>支払方法</h4>
     <div><%= session[:save_order]["payment_method"] %></div>
     <h4>お届け先</h4>
@@ -39,4 +39,6 @@
     <div><%= session[:save_order]["direction"]  %></div>
   
 </div>
-<%= button_to '確定する', public_orders_path, method: :post %>
+<div class='order_check'>
+    <%= button_to '確定する', public_orders_path, method: :post, class: "btn btn-outline-success btn-lg" %>
+</div>

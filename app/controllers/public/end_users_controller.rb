@@ -5,7 +5,7 @@ class Public::EndUsersController < ApplicationController
     def show
         @end_user = current_end_user
         @user = EndUser.find(params[:id])
-        @items = @user.items.all
+        @items = @user.items.all.reverse_order
     end
     
     def edit

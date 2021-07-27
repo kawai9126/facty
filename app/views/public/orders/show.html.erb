@@ -1,5 +1,5 @@
- <h2>注文履歴詳細</h2>
-    <div>
+ <h2 class='order_show'>注文履歴詳細</h2>
+    <div class='order_show'>
         <table>
             <tr>注文情報<br>
                 <th>注文日</th>
@@ -20,7 +20,7 @@
         </table>
     </div>
     
-    <div>
+    <div class='order_show'>
         <table>
             <tr>請求情報
                 <th>商品合計</th>
@@ -37,7 +37,7 @@
         </table>
     </div>
 
-    <div>
+    <div class='order_show'>
         <table>
             <tr>注文内容
                 <th>商品</th>
@@ -47,7 +47,7 @@
             </tr>
             <% @order_items.each do |order_item| %>
             <tr>
-                <td><%= order_item.item.name %></td>
+                <td><%#= order_item.inspect %><%= order_item.item.blank? ? "商品なし" : order_item.item.name %></td>
                 <td><%= order_item.tax_included_price.to_s(:delimited) %>円</td>
                 <td><%= order_item.number %></td>
                 <td><%= (order_item.tax_included_price * order_item.number).to_s(:delimited) %>円</td>

@@ -13,3 +13,60 @@
  *= require_tree .
  *= require_self
  */
+ @import "bootstrap";
+ @import 'font-awesome-sprockets';
+ @import 'font-awesome';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.footer_facty{
+  margin-left: auto;
+  margin-right: auto;
+  width: 8em
+}
+
+.registration{
+   margin-left: 150px;
+   margin-top: 50px;
+}
+
+.session{
+   margin-left: 150px;
+   margin-top: 50px;
+}
+
+.logo {
+    margin: 10px 0 0 30px;
+    float: left;
+}
+
+.logo img {
+    height: 100px;
+    widht: 100px;
+    
+}
+
+
+.navbar{
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+    right: 100px;
+}
+
+.navbar li{
+    padding: 0 10px;
+    margin-top: 30px;
+    margin-left: 100px;
+    list-style: none;
+    border-bottom: 1px solid black;
+}
+
+.notice{
+    margin-left: 150px;
+    margin-top: 50px;
+}

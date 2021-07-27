@@ -1,5 +1,5 @@
-<h2>注文情報入力</h2>
-<div>
+<h2 class='order_new'>注文情報入力</h2>
+<div class='order_new'>
 <%= form_with model: @order,url: check_public_orders_path, local:true do |f| %>
     <div>
         <%= f.radio_button :payment_method, :クレジット, checked: true %>
@@ -28,7 +28,7 @@
         <div>　　　住所　　　　　　　<%= f.text_area :delivery_address %></div>
         <div>　　　宛名　　　　　　　<%= f.text_field :direction %></div>
     </div>
-    <div>
+    <div class='order_new_btn'>
     <%= f.submit '確認画面へ進む', class: "btn btn-primary" %>
     </div>
  <% end %>

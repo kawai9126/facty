@@ -1,16 +1,18 @@
 class Public::CommentsController < ApplicationController
     def create
-        @item = Item.find(params[:book_id])
+        @item = Item.find(params[:item_id])
         comment = current_end_user.comments.new(comment_params)
         comment.item_id = @item.id
         comment.save
         @comment = Comment.new
+        redirect_to public_item_path(@item.id)
     end
 
     def destroy
         @item = Item.find(params[:item_id])
-        Comment.find_by(id: params[:id], item_id: params[:item_id]).destroy
+        Comment.find(params[:id]).destroy
         @comment = Comment.new
+        redirect_to public_item_path(@item.id)
     end
 
 private

@@ -18,7 +18,7 @@ devise_for :end_users, controllers: {
 #ユーザー側  
   namespace :public do
     resources :items,only: [:index,:show,:edit,:new,:create,:update,:destroy] do
-        resource :comments, only: [:create, :destroy]
+        resources :comments, only: [:create, :destroy]
         resource :favorites, only: [:create, :destroy]
     end
     resources :end_users,only: [:index,:show,:edit,:update,:create] 
