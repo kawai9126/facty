@@ -1,4 +1,6 @@
-<h4 class='item_index_new'><%= link_to " 投稿する！ ", new_public_item_path,  class: "btn btn-outline-success btn-lg"%></h4>
+<% if end_user_signed_in? %>
+    <h4 class='item_index_new'><%= link_to " 投稿する！ ", new_public_item_path,  class: "btn btn-outline-success btn-lg"%></h4>
+<% end %>
 <h1 class='item_index_title'>グッズ一覧(全<%= @totals.count %>件)</h1>
 <table>
 </div>
