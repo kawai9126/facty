@@ -2,10 +2,7 @@ class Public::OrdersController < ApplicationController
     before_action :authenticate_end_user!
     def index  # 購入履歴
         @end_user = current_end_user
-        @orders = @end_user.orders.all
-       
-        @buyers = EndUser.where(id: Order.where(item_id: current_end_user.items.ids).pluck('end_user_id'))
-        @items =  Order.includes(:item).where(items: {end_user_id: current_end_user})
+        @orders = @end_user.orders.all.reverse_order
     end
     def buyer #販売履歴
         @orders = Order.includes(:item).where(items: {end_user_id: current_end_user}).reverse_order

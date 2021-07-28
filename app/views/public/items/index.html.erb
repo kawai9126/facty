@@ -9,8 +9,8 @@
             <%= link_to public_item_path(item.id) do %>
             <%= attachment_image_tag item, :image, size: "700x600", fallback: "no_image.jpg"%>
         </div>
-        <div>
-            <%= item.end_user.nick_name %>
+        <div class='item_index_profil'>
+            <%= attachment_image_tag item.end_user, :profile_image, size: "80x80", fallback: "no_image.jpg", class: "rounded-circle" %> <%= item.end_user.nick_name %>
         </div>
         <p>
             <%= item.name %>

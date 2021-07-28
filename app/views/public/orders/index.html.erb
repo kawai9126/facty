@@ -9,7 +9,7 @@
     <% @orders.each do |order| %>
     <tr>
         <td class='order_index_info'><%= order.created_at.strftime('%Y/%m/%d') %></td>
-        <td class='order_index_info'>
+        <td>
               〒<%= order.mail_number %><br>
               <%= order.delivery_address %><br>
               <%= order.direction %> <br>

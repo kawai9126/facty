@@ -18,10 +18,17 @@
     <% end %>
 
     
+    <div class='user_show'>
+        <%= attachment_image_tag @user, :profile_image, size: "400x400", fallback: "no_image.jpg", class: "rounded-circle" %>
+    </div>
     <table class='user_show'>
         <tr>
             <th>ニックネーム</th>
             <td><%= @user.nick_name %></td>
+        </tr>
+        <tr>
+            <th>自己紹介</th>
+            <td><%= @user.introduction %></td>
         </tr>
         <%if @user.id == current_end_user.id %>
     

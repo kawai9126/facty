@@ -12,6 +12,8 @@ class EndUser < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   
+  attachment :profile_image
+  
   def total_price
     total = 0
     self.cart_items.each do |cart_item|

@@ -22,5 +22,5 @@
 </table>
 <p class='cart_title'>合計金額 <%= current_end_user.total_price.to_s(:delimited) %>円</p>
 <% if @cart_items.count > 0 %>
-<div><%=link_to "購入情報入力に進む", new_public_order_path, class: "btn btn-outline-success btn-lg" %></div>
+<div class='cart_title'><%=link_to "購入情報入力に進む", new_public_order_path, class: "btn btn-outline-success btn-lg" %></div>
 <% end %>

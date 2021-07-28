@@ -1,6 +1,8 @@
 class Public::EndUsersController < ApplicationController
     
     def index
+        # @user = current_user
+        @users = EndUser.all
     end
     def show
         @end_user = current_end_user
@@ -23,7 +25,7 @@ class Public::EndUsersController < ApplicationController
 
     private
     def end_user_params
-        params.require(:end_user).permit(:nick_name, :user_name,:mail_number,:adress,:tel,:mail)
+        params.require(:end_user).permit(:nick_name, :user_name,:mail_number,:adress,:tel,:mail,:profile_image,:introduction)
     end
     def item_params
         params.require(:item).permit(:image, :name, :contents, :genre_id, :non_price, :is_sale)
