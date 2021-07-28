@@ -1,35 +1,22 @@
-<h2 class='user_show'>マイページ</h2>
-    <% if @user.id == current_end_user.id %>
+<h2 class='mypage' >マイページ</h2>
     <div class='user_show'>
         <div>
-            発送先 <%= link_to '追加',public_shipping_addresses_path, class: "btn btn-outline-primary" %>
-        </div>
-    
-        <div>
-            注文履歴 <%= link_to '一覧を見る',public_orders_path, class: "btn btn-outline-primary" %>
+            <%= attachment_image_tag @user, :profile_image, size: "400x400", fallback: "no_image.jpg", class: "rounded-circle" %>
         </div>
         <div>
-            販売履歴 <%= link_to '一覧を見る',buyer_public_orders_path, class: "btn btn-outline-primary" %>
+            <h6>ニックネーム</h6> 
         </div>
         <div>
-            登録情報 <%= link_to "編集する", edit_public_end_user_path(@end_user), class: "btn btn-outline-primary" %>
+            <h4><%= @user.nick_name %></h4>
         </div>
-    </div>
-    <% end %>
-
-    
-    <div class='user_show'>
-        <%= attachment_image_tag @user, :profile_image, size: "400x400", fallback: "no_image.jpg", class: "rounded-circle" %>
+        <div>
+            <h6>自己紹介</h6> 
+        </div>
+        <div>
+            <h5><%= @user.introduction %></h5>
+        </div>
     </div>
     <table class='user_show'>
-        <tr>
-            <th>ニックネーム</th>
-            <td><%= @user.nick_name %></td>
-        </tr>
-        <tr>
-            <th>自己紹介</th>
-            <td><%= @user.introduction %></td>
-        </tr>
         <%if @user.id == current_end_user.id %>
     
         <tr>
@@ -58,6 +45,23 @@
         </tr>
         <% end %>
     </table>
+    <% if @user.id == current_end_user.id %>
+    <div class='user_show'>
+        <div>
+            発送先 <%= link_to '追加',public_shipping_addresses_path, class: "btn btn-outline-primary" %>
+        </div>
+    
+        <div class='user_show_add'>
+            注文履歴 <%= link_to '一覧を見る',public_orders_path, class: "btn btn-outline-primary" %>
+        </div>
+        <div class='user_show_add'>
+            販売履歴 <%= link_to '一覧を見る',buyer_public_orders_path, class: "btn btn-outline-primary" %>
+        </div>
+        <div class='user_show_edit'>
+            登録情報 <%= link_to "編集する", edit_public_end_user_path(@end_user), class: "btn btn-outline-success btn-lg" %>
+        </div>
+    </div>
+    <% end %>
     <table>
     <h1 class='user_show'>投稿一覧</h1>
     <% @items.each do |item| %>

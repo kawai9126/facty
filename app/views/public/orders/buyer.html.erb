@@ -14,9 +14,9 @@
         <tr class='order_buyer_info'>
             <td class='order_buyer_info'><%= order.created_at.strftime('%Y/%m/%d') %></td>
             <td class='order_buyer_info'><%= order.end_user.nick_name %></td>
-            <td class='order_buyer_info'><%= order.end_user.user_name %></td>
-            <td class='order_buyer_info'>〒<%= order.end_user.mail_number %></td>
-            <td class='order_buyer_info'><%= order.end_user.adress %></td>
+            <td class='order_buyer_info'><%= order.direction %></td>
+            <td class='order_buyer_info'>〒<%= order.mail_number %></td>
+            <td class='order_buyer_info'><%= order.delivery_address %></td>
             <td class='order_buyer_info'><%= order.item.name %></td>
             <td class='order_buyer_info'><%= order.order_items.first.number %></td>
         </tr>
