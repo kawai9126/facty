@@ -6,7 +6,12 @@
     </tr>
     <tr>
         <td class='info_top'>
-            <%= attachment_image_tag @item.end_user, :profile_image, size: "50x50", fallback: "no_image.jpg", class:"rounded-circle"%> <%= link_to @user.nick_name, public_end_user_path(@user.id) %>
+            <%= attachment_image_tag @item.end_user, :profile_image, size: "50x50", fallback: "no_image.jpg", class:"rounded-circle"%> 
+            <% if end_user_signed_in? %>
+                <%= link_to @user.nick_name, public_end_user_path(@user.id) %>
+            <% else %>
+                <%= @user.nick_name %>
+            <% end %>
         </td>
     </tr>
     <tr>

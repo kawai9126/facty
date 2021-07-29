@@ -17,7 +17,7 @@ class Public::OrdersController < ApplicationController
         @order = Order.new
     end
     
-    def check
+    def check #sessionに入れることで他の場所でも使えるようにします
         session[:save_order] = Order.new()
         session[:save_order] = order_params
         session[:save_order][:end_user_id] = current_end_user.id
@@ -48,17 +48,17 @@ class Public::OrdersController < ApplicationController
         #ShippingAddress.find_or_create_by!(end_user_id: current_end_user.id,direction: @order.direction,delivery_address: @order.delivery_address,mail_number: @order.mail_number)
         @cart_items = current_end_user.cart_items
         save_order = session[:save_order].symbolize_keys
-        ShippingAddress.find_or_create_by!(end_user_id: current_end_user.id,direction: save_order[:direction],delivery_address: save_order[:delivery_address],mail_number: save_order[:mail_number])
+        ShippingAddress.find_or_create_by!(end_user_id: current_end_user.id,direction: save_order[:direction],delivery_address: save_order[:delivery_address],mail_number: save_order[:mail_number]) #なかった時にクリエイトしています
         @cart_items = current_end_user.cart_items
         @cart_items.each do |cart| 
           order = Order.new(session[:save_order])
-          order.item_id = cart.item_id
+          order.item_id = cart.item_id #order.item_idにcart.item_idを反映させてます
           if order.save 
             OrderItem.create!(item_id: cart.item.id, order_id: order.id, number: cart.number, tax_included_price: cart.item.add_tax_price )
           end
        end
        current_end_user.cart_items.destroy_all
-       session[:save_order].clear
+       session[:save_order].clear #ここでクッキーに保管されているものを削除します。
        redirect_to thanks_public_orders_path
     end
     
