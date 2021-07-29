@@ -21,7 +21,7 @@ funとcastでcaryをし合うという意味で作りました。
 ファンの方、応援したい方はそのグッズなどの背景をプロフィールや商品説明から知った上で才能、グッズ、チケットの購入ができます。
 
 ### ワイヤーフレーム
-https://drive.google.com/file/d/1VkDCSyJj3wg_QwN9-wgIllHGzPwa-Zdv/view?usp=sharing
+更新中
 
 
 ## 設計書
@@ -31,13 +31,13 @@ https://drive.google.com/file/d/1VkDCSyJj3wg_QwN9-wgIllHGzPwa-Zdv/view?usp=shari
 https://docs.google.com/spreadsheets/d/1L6eELIQt4U_PnEGQ4obXX1WqQZ_EsQyNABy3gQeGE1M/edit?usp=sharing
 
 ## ER図
- https://drive.google.com/file/d/1dtdfK8nCqLAi606DYd7Nk0QXVcHVrz7G/view?usp=sharing
+ 更新中
  
 ## アプリケーション詳細設計
-ここに
+更新中
 
 ## ルート設計
-ここに
+更新中
 
 ##  WBS
 https://docs.google.com/spreadsheets/d/19mmYmqDc1jBr5c99otqpbuft_HNvaDqaiBm4H3d2aCI/edit?usp=sharing
