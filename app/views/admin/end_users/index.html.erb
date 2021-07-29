@@ -1,17 +1,17 @@
 <h2 class='user_index'>会員一覧</h2>
 <table class='user_index'>
     <tr>
-        <th>会員ID</th>
-        <th>ニックネーム</th>
-        <th>氏名</th>
-        <th>メールアドレス</th>
+        <th class='info'>会員ID</th>
+        <th class='info'>ニックネーム</th>
+        <th class='info'>氏名</th>
+        <th class='info'>メールアドレス</th>
     </tr>
     <% @end_users.each do |end_user| %>
     <tr>
-        <td><%= end_user.id %></td>
-        <td><%= end_user.nick_name %></td> 
-        <td><%= link_to end_user.user_name, admin_end_user_path(end_user) %></td>
-        <td><%= end_user.email %></td>
+        <td class='info'><%= end_user.id %></td>
+        <td class='info'><%= end_user.nick_name %></td> 
+        <td class='info'><%= link_to end_user.user_name, admin_end_user_path(end_user) %></td>
+        <td class='info'><%= end_user.email %></td>
   　</tr>
     <% end %>
     <%= paginate @end_users %>

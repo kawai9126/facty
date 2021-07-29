@@ -20,25 +20,27 @@
             </tr>
         </table>
     </div>
-    <div>
+    <div class='info_top'>
         <table>
             <tr>
-                <th>商品名</th>
-                <th>単価(税込)</th>
-                <th>数量</th>
-                <th>小計</th>
+                <th class='info'>出品者</th>
+                <th class='info'>商品名</th>
+                <th class='info'>単価(税込)</th>
+                <th class='info'>数量</th>
+                <th class='info'>小計</th>
             </tr>
             <% @order_items.each do |order_item| %>
             <tr>
-                <td><%= order_item.item.name %></td>
-                <td><%= order_item.tax_included_price %></td>
-                <td><%= order_item.number %></td>
-                <td><%= ((order_item.tax_included_price)*(order_item.number)) %></td>
+                <td class='info'><%= order_item.item.end_user.user_name %></td>
+                <td class='info'><%= order_item.item.name %></td>
+                <td class='info'><%= order_item.tax_included_price %>円</td>
+                <td class='info'><%= order_item.number %>個</td>
+                <td class='info'><%= ((order_item.tax_included_price)*(order_item.number)) %>円</td>
             </tr>
             <% end %>
         </table>
     </div>
-    <div>商品合計　　　<%= @order.total_price %>円</div>
+    <div class='info_top'>商品合計　　　<%= @order.total_price %>円</div>
     <div>送料　　　　　<%= @order.shipping_fee %>円</div>
     <div>請求金額合計　<%= (@order.total_price + @order.shipping_fee) %>円</div>
 </div>

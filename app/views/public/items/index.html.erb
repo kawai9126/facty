@@ -15,17 +15,16 @@
             <%= attachment_image_tag item.end_user, :profile_image, size: "80x80", fallback: "no_image.jpg", class: "rounded-circle" %> <%= item.end_user.nick_name %>
         </div>
         <p>
-            <%= item.name %>
+            商品名：<%= item.name %>
+        </p>
+        <p>
+            <%= item.contents %>
+        </p>
+        <p>
+            ジャンル：<%= item.genre.name %>
         </p>
         <p>
             ¥<%= item.non_price.to_s(:delimited) %>
-        </p>
-        <p>
-            <% if item.is_sale == true %>
-                販売中
-            <% else %>
-                販売停止中
-            <% end %>
         </p>
         <p>
             <%= item.created_at.strftime('%Y/%m/%d') %>
@@ -37,6 +36,6 @@
     </div>
 </div>
 <% end %>
-<div>
+<div class='item_index'>
     <%= paginate @items %>
 </div>

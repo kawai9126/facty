@@ -39,7 +39,8 @@
 
     <div class='order_show'>
         <table>
-            <tr>注文内容
+            <tr>
+                <th>注文内容</th>
                 <th>商品</th>
                 <th>単価（税込）</th>
                 <th>個数</th>
@@ -47,7 +48,7 @@
             </tr>
             <% @order_items.each do |order_item| %>
             <tr>
-                <td><%#= order_item.inspect %><%= order_item.item.blank? ? "商品なし" : order_item.item.name %></td>
+                <td><%= order_item.item.blank? ? "商品なし" : order_item.item.name %></td>
                 <td><%= order_item.tax_included_price.to_s(:delimited) %>円</td>
                 <td><%= order_item.number %></td>
                 <td><%= (order_item.tax_included_price * order_item.number).to_s(:delimited) %>円</td>

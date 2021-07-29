@@ -20,28 +20,28 @@
         <%if @user.id == current_end_user.id %>
     
         <tr>
-            <th>名前</th>
-            <td><%= @user.user_name %></td>
+            <th class='info_top'>名前</th>
+            <td class='info_top'><%= @user.user_name %></td>
         </tr>
     
         <tr>
-            <th>郵便番号</th>
-            <td><%= @user.mail_number %></td>
+            <th class='info_top'>郵便番号</th>
+            <td class='info_top'><%= @user.mail_number %></td>
         </tr>
     
         <tr>
-            <th>住所</th>
-            <td><%= @user.adress %></td>
+            <th class='info_top'>住所</th>
+            <td class='info_top'><%= @user.adress %></td>
         </tr>
     
         <tr>
-            <th>電話番号</th>
-            <td><%= @user.tel %></td>
+            <th class='info_top'>電話番号</th>
+            <td class='info_top'><%= @user.tel %></td>
         </tr>
     
         <tr>
-            <th>メールアドレス</th>
-            <td><%= @user.email %></td>
+            <th class='info_top'>メールアドレス</th>
+            <td class='info_top'><%= @user.email %></td>
         </tr>
         <% end %>
     </table>

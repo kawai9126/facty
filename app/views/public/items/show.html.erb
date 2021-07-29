@@ -5,13 +5,13 @@
         </td>
     </tr>
     <tr>
-        <td>
+        <td class='info_top'>
             <%= attachment_image_tag @item.end_user, :profile_image, size: "50x50", fallback: "no_image.jpg", class:"rounded-circle"%> <%= link_to @user.nick_name, public_end_user_path(@user.id) %>
         </td>
     </tr>
     <tr>
         <td>
-            <%= @item.name %>
+            商品名：<%= @item.name %>
         </td>
     </tr>
     <tr>
@@ -21,16 +21,12 @@
     </tr>
     <tr>
         <td>
-            ￥<%= @item.add_tax_price.to_s(:delimited) %> 円 (税込)<!--税込価格を表示するためitem.rbで掛け算するアクションを記載してます-->
+            ジャンル：<%= @item.genre.name %>
         </td>
     </tr>
     <tr>
         <td>
-            <% if @item.is_sale %>
-                販売中
-            <% else %>
-                販売停止中
-            <% end %>
+            ￥<%= @item.add_tax_price.to_s(:delimited) %> 円 (税込)<!--税込価格を表示するためitem.rbで掛け算するアクションを記載してます-->
         </td>
     </tr>
     <tr>

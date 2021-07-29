@@ -11,8 +11,8 @@
             <div>グッズのジャンル</div>
             <% @genres.each do |genre| %>
             <tr>
-                <td><%= genre.name %></td>
-                <td><%= link_to "編集する", edit_admin_genre_path(genre),data: {"turbolinks"=>false}, class: "btn btn-sm btn-success" %></td>
+                <td class='info_top'><%= genre.name %></td>
+                <td class='info_top'><%= link_to "編集する", edit_admin_genre_path(genre),data: {"turbolinks"=>false}, class: "btn btn-sm btn-success" %></td>
             </tr>
             <% end %>
         </table>
