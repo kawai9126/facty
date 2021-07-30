@@ -46,13 +46,16 @@
                 <% else %>
                 <!--ログインしてないとき-->
                   <li> 
-                    <%= link_to ' 商品一覧', public_items_path %>
+                    <%= link_to '商品一覧', public_items_path %>
                   </li>
                   <li> 
-                    <%= link_to ' 新規登録', new_end_user_registration_path %>
+                    <%= link_to '新規登録', new_end_user_registration_path %>
                   </li>
                   <li> 
-                    <%= link_to ' ログイン', new_end_user_session_path %>
+                    <%= link_to 'ログイン', new_end_user_session_path %>
+                  </li>
+                  <li>
+                    <%= link_to '管理者ログイン',new_admin_session_path %>
                   </li>
                 <% end %>
         　   </ul>
