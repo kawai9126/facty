@@ -44,6 +44,15 @@
             <%= @item.created_at.strftime('%Y/%m/%d') %>
         </td>
     </tr>
+    <tr>
+        <td>
+            <% if @item.is_sale %>
+                販売中
+            <% else %>
+                この商品は購入できません
+            <% end %>
+        </td>
+    </tr>
     <% if @item.is_sale %>
     <tr>
         <% if end_user_signed_in? %>
@@ -62,9 +71,6 @@
     <tr>
         <td>
             <%= link_to "編集", edit_public_item_path, class:"btn btn-sm btn-success" %>
-        </td>
-        <td>
-            <%= link_to "削除", public_item_path(@item),  method: :delete, "data-confirm" => "本当に消しますか？", class:"btn btn-sm btn-danger" %>
         </td>
     </tr>
     <% end %>
