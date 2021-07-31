@@ -5,7 +5,7 @@ class Public::OrdersController < ApplicationController
         @orders = @end_user.orders.all.reverse_order
     end
     def buyer #販売履歴
-        @orders = Order.includes(:item).where(items: {end_user_id: current_end_user}).reverse_order
+        @orders = Order.includes(:item).where(items: {end_user_id: current_end_user}).reverse_order #includesで事前にオーダーに関するアイテムの情報を持ってきてそこから出品者のオーダーを見つけるフィルタリングをしています。
     end
     
     def show

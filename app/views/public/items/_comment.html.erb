@@ -8,17 +8,17 @@
       <td>
         <%= comment.comment %>
       </td>
-  <% if comment.end_user == current_end_user %>
+    <% if comment.end_user == current_end_user %>
       <td>
         <%= link_to "削除", public_item_comment_path(comment.item.id, comment.id),local: true, method: :delete, class:"btn btn-sm btn-danger" %>
       </td>
+    <% end %>
     </tr>
   </table>
-  <% end %>
 <% end %>
 <div style="text-align:center">
 <%= form_with(model: comment, method: 'POST', local: true, url: public_item_comments_path(item.id)) do |f| %>
   <%= f.text_area :comment, rows:'5',placeholder: "" %>
   <%= f.submit "コメントする" %>
-</div>
 <% end %>
+</div>
