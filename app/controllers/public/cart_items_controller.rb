@@ -26,7 +26,7 @@ class Public::CartItemsController < ApplicationController
         #     render :index
         # end
         
-        cart_item = CartItem.where(end_user_id: current_end_user.id)
+        cart_item = CartItem.where(end_user_id: current_end_user.id) #カートに物が入っているときに入らないようにreturnで出しています。
         if cart_item.present?
            flash[:notice] = 'すでにカートに商品が入っています！'
            redirect_to public_item_path(params[:cart_item][:item_id])

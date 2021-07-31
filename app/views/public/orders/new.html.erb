@@ -11,7 +11,7 @@
     </div>
     <div>お届け先</div>
     <div>
-        <%= f.radio_button :adress_option, 0 , checked: true %>
+        <%= f.radio_button :adress_option, 0 , checked: true %> <!--ラジオボタンで選べるようにしています。-->
         <%= f.label :ご自身の住所 %>
         <%= current_end_user.adress %>
         <%= current_end_user.user_name %>
@@ -19,7 +19,7 @@
     <div>
         <%= f.radio_button :adress_option, 1 %>
         <%= f.label :登録済住所から選択 %>
-        <%= f.collection_select(:shipping_addresses, current_end_user.shipping_addresses, :id, :delivery_address)  %>
+        <%= f.collection_select(:shipping_addresses, current_end_user.shipping_addresses, :id, :delivery_address)  %> <!--コレクションセレクトで過去に登録したものを選べるようにしています。-->
     </div>
     <div>
         <%= f.radio_button :adress_option, 2 %>

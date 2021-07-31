@@ -29,7 +29,7 @@
           <th></th>
         </tr>
         <% @shipping_addresses.each do |sa| %>
-        <tr>
+        <tr> <!--ターボリンクで発火がしなくなってしまったので消しています。-->
           <td><%= sa.mail_number %></td>
           <td><%= sa.delivery_address %></td>
           <td><%= sa.direction %></td>

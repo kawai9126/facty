@@ -5,7 +5,7 @@ class Public::OrdersController < ApplicationController
         @orders = @end_user.orders.all.reverse_order
     end
     def buyer #販売履歴
-        @orders = Order.includes(:item).where(items: {end_user_id: current_end_user}).reverse_order #includesで事前にオーダーに関するアイテムの情報を持ってきてそこから出品者のオーダーを見つけるフィルタリングをしています。
+        @orders = Order.includes(:item).where(items: {end_user_id: current_end_user}).reverse_order #includesで事前にオーダーに関するアイテムの情報を持ってきてそこから出品者のオーダーを見つけるフィルタリングをして出品者の情報があるオーダーをの情報を出せるようにしています。
     end
     
     def show
@@ -17,7 +17,7 @@ class Public::OrdersController < ApplicationController
         @order = Order.new
     end
     
-    def check #sessionに入れることで他の場所でも使えるようにします
+    def check #sessionに入れることで他の場所にも送れるようにしています。
         session[:save_order] = Order.new()
         session[:save_order] = order_params
         session[:save_order][:end_user_id] = current_end_user.id
@@ -47,7 +47,7 @@ class Public::OrdersController < ApplicationController
         #@order.save
         #ShippingAddress.find_or_create_by!(end_user_id: current_end_user.id,direction: @order.direction,delivery_address: @order.delivery_address,mail_number: @order.mail_number)
         @cart_items = current_end_user.cart_items
-        save_order = session[:save_order].symbolize_keys
+        save_order = session[:save_order].symbolize_keys #認識できなかったためシンボル化させ認識できるようシンボライズキィを使用しました。
         ShippingAddress.find_or_create_by!(end_user_id: current_end_user.id,direction: save_order[:direction],delivery_address: save_order[:delivery_address],mail_number: save_order[:mail_number]) #なかった時にクリエイトしています
         @cart_items = current_end_user.cart_items
         @cart_items.each do |cart| 
