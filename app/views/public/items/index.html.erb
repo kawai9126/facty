@@ -4,8 +4,8 @@
 <h1 class='item_index_title'>グッズ一覧(全<%= @totals.count %>件)</h1>
 <table>
 </div>
- <% @items.each do |item| %>
- <div class='item_index'>
+<% @items.each do |item| %>
+<div class='item_index'>
     <div>
         <div>
             <%= link_to public_item_path(item.id) do %>

@@ -18,28 +18,30 @@ class Public::OrdersController < ApplicationController
     end
     
     def check #sessionに入れることで他の場所にも送れるようにしています。
-        session[:save_order] = Order.new()
-        session[:save_order] = order_params
-        session[:save_order][:end_user_id] = current_end_user.id
         @shipping_fee = 500.to_i
-        session[:save_order][:shipping_fee] = @shipping_fee
-        session[:save_order][:invoice] = @shipping_fee + current_end_user.total_price
+        check_order = order_params
+        check_order[:end_user_id] = current_end_user.id
+        check_order[:shipping_fee] = @shipping_fee
+        check_order[:invoice] = @shipping_fee + current_end_user.total_price
         @cart_items = current_end_user.cart_items
-        #session[:save_order][:item_id] = current_end_user.cart_items.first.item_id
         if params[:order][:adress_option].to_i == 0
-        session[:save_order][:mail_number] = current_end_user.mail_number
-        session[:save_order][:delivery_address] = current_end_user.adress
-        session[:save_order][:direction] = current_end_user.user_name
+        # adress_option が 0の場合
+        check_order[:mail_number] = current_end_user.mail_number
+        check_order[:delivery_address] = current_end_user.adress
+        check_order[:direction] = current_end_user.user_name
         elsif params[:order][:adress_option].to_i == 1
-        @add_order = ShippingAddress.find(params[:order][:shipping_addresses]) 
-        session[:save_order][:mail_number] = @add_order.mail_number
-        session[:save_order][:delivery_address] = @add_order.delivery_address 
-        session[:save_order][:direction] = @add_order.direction 
+        # adress_option が 1の場合
+        @add_order = ShippingAddress.find(params[:order][:shipping_addresses])
+        check_order[:mail_number] = @add_order.mail_number
+        check_order[:delivery_address] = @add_order.delivery_address
+        check_order[:direction] = @add_order.direction
         elsif params[:order][:adress_option].to_i == 2
-        session[:save_order][:mail_number] = order_params[:mail_number]
-        session[:save_order][:delivery_address] = order_params[:delivery_address] 
-        session[:save_order][:direction] = order_params[:direction]
+        # adress_option が 2の場合
+        check_order[:mail_number] = order_params[:mail_number]
+        check_order[:delivery_address] = order_params[:delivery_address]
+        check_order[:direction] = order_params[:direction]
         end
+        session[:save_order] = check_order
     end
 
     def create
