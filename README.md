@@ -21,23 +21,20 @@ funとcastでcaryをし合うという意味で作りました。
 ファンの方、応援したい方はそのグッズなどの背景をプロフィールや商品説明から知った上で才能、グッズ、チケットの購入ができます。
 
 ### ワイヤーフレーム
-更新中
+https://drive.google.com/file/d/1VkDCSyJj3wg_QwN9-wgIllHGzPwa-Zdv/view?usp=sharing
 
 
-## 設計書
-完成後につけます。
+## テーブル設計書
+https://docs.google.com/spreadsheets/d/1KFtPVlWA7_gB7zQcJvGvlxxcs0zneuY3QwbY_vFIbww/edit?usp=sharing
 
 ## チャレンジ要素一覧
 https://docs.google.com/spreadsheets/d/1L6eELIQt4U_PnEGQ4obXX1WqQZ_EsQyNABy3gQeGE1M/edit?usp=sharing
 
 ## ER図
- 更新中
+ https://drive.google.com/file/d/1dtdfK8nCqLAi606DYd7Nk0QXVcHVrz7G/view?usp=sharing
  
-## アプリケーション詳細設計
-更新中
-
 ## ルート設計
-更新中
+https://docs.google.com/spreadsheets/d/1eqrAt75RXNyWA15FnydhmGx52jVi2AF7FrOcJlP2cfs/edit?usp=sharing
 
 ##  WBS
 https://docs.google.com/spreadsheets/d/19mmYmqDc1jBr5c99otqpbuft_HNvaDqaiBm4H3d2aCI/edit?usp=sharing
