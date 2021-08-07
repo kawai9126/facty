@@ -16,10 +16,6 @@ class Order < ApplicationRecord
 
 
     def total_order #商品個数をメソッドで計算
-        number = 0
-        self.order_items.each do |f|
-            number += f.number
-        end
-        number
+        self.order_items.count
     end
 end

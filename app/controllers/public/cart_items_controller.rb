@@ -7,12 +7,6 @@ class Public::CartItemsController < ApplicationController
         
     end
 
-    # def destroy
-    #     @cart_item = CartItem.find(params[:id])
-    #     @cart_item.destroy
-    #     redirect_to public_cart_items_path
-    # end
-
     def update
         @cart_item = CartItem.find(params[:id])
         @cart_item.update(cart_item_params)
@@ -20,12 +14,6 @@ class Public::CartItemsController < ApplicationController
     end
 
     def create
-        
-        
-        # if CartItem.where(end_user_id: current_end_user, item_id: params[:cart_item][:item_id]).exists?
-        #     render :index
-        # end
-        
         cart_item = CartItem.where(end_user_id: current_end_user.id) #カートに物が入っているときに入らないようにreturnで出しています。
         if cart_item.present?
            flash[:notice] = 'すでにカートに商品が入っています！'
