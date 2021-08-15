@@ -7,7 +7,7 @@ class Public::OrdersController < ApplicationController
     def buyer #販売履歴
         @orders = Order.includes(:item).where(items: {end_user_id: current_end_user}).reverse_order #includesで事前にオーダーに関するアイテムの情報を持ってきてそこから出品者のオーダーを見つけるフィルタリングをして出品者の情報があるオーダーをの情報を出せるようにしています。
     end
-    
+
     def show
         @order = Order.find(params[:id])
         @order_items = @order.order_items

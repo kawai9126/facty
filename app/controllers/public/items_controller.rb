@@ -18,6 +18,9 @@ class Public::ItemsController < ApplicationController
         @comment = Comment.new
         @comments = @item.comments
     end
+    
+    
+    
     def create
         @item = Item.new(item_params)
         @item.end_user_id = current_end_user.id

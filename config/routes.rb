@@ -14,14 +14,14 @@ devise_for :end_users, controllers: {
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root to: 'homes#top'
-  
+
 #ユーザー側  
   namespace :public do
     resources :items,only: [:index,:show,:edit,:new,:create,:update,:destroy] do
         resources :comments, only: [:create, :destroy]
         resource :favorites, only: [:create, :destroy]
     end
-    resources :end_users,only: [:index,:show,:edit,:update,:create] 
+    resources :end_users,only: [:index,:show,:edit,:update,:create]
     resources :orders,only: [:index,:create,:show,:new] do
      collection do
       get 'buyer'
@@ -37,13 +37,14 @@ devise_for :end_users, controllers: {
    end
   end
   
+  
+  
 # 管理側
   namespace :admin do
     resources :genres,only: [:index,:edit,:update,:create]
     resources :end_users,only: [:index,:show]
-    resources :items,only: [:index,:edit,:show,:create,:update,:destroy]
+    resources :items,only: [:index,:edit,:show]
     resources :orders,only: [:index,:show,:update]
-    resources :order_items,only: [:update]
     resources :adimin,only: [:index,:create,:destroy]
   end
 end
