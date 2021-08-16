@@ -21,7 +21,11 @@ devise_for :end_users, controllers: {
         resources :comments, only: [:create, :destroy]
         resource :favorites, only: [:create, :destroy]
     end
-    resources :end_users,only: [:index,:show,:edit,:update,:create]
+    resources :end_users,only: [:index,:show,:edit,:update,:create] do
+      resource :relationships, only: [:create, :destroy]
+      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'followers'
+    end
     resources :orders,only: [:index,:create,:show,:new] do
      collection do
       get 'buyer'

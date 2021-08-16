@@ -20,9 +20,8 @@ funとcastでcaryをし合うという意味で作りました。
 自分の才能、オリジナルグッズや舞台のチケットその他を簡易的に販売。
 ファンの方、応援したい方はそのグッズなどの背景をプロフィールや商品説明から知った上で才能、グッズ、チケットの購入ができます。
 
-### ワイヤーフレーム
+## ワイヤーフレーム
 https://drive.google.com/file/d/1VkDCSyJj3wg_QwN9-wgIllHGzPwa-Zdv/view?usp=sharing
-
 
 ## テーブル設計書
 https://docs.google.com/spreadsheets/d/1KFtPVlWA7_gB7zQcJvGvlxxcs0zneuY3QwbY_vFIbww/edit?usp=sharing
@@ -35,9 +34,6 @@ https://docs.google.com/spreadsheets/d/1L6eELIQt4U_PnEGQ4obXX1WqQZ_EsQyNABy3gQeG
  
 ## ルート設計
 https://docs.google.com/spreadsheets/d/1eqrAt75RXNyWA15FnydhmGx52jVi2AF7FrOcJlP2cfs/edit?usp=sharing
-
-##  WBS
-https://docs.google.com/spreadsheets/d/19mmYmqDc1jBr5c99otqpbuft_HNvaDqaiBm4H3d2aCI/edit?usp=sharing
 
 ## 管理者パスワード
 Admin.create!(
