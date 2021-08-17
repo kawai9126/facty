@@ -10,6 +10,16 @@ class Public::EndUsersController < ApplicationController
         @items = @user.items.all.reverse_order
     end
     
+    def follow
+        @end_user = EndUser.find(params[:end_user_id])
+        @users = @end_user.followings
+    end
+
+    def follower
+        @end_user = EndUser.find(params[:end_user_id])
+        @users = @end_user.followers
+    end
+    
     def edit
         @end_user = current_end_user
     end

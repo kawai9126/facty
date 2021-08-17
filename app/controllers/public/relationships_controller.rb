@@ -10,14 +10,5 @@ class Public::RelationshipsController < ApplicationController
         redirect_to request.referer
     end
     
-    def followings
-        end_user = EndUser.find(params[:end_user_id])
-        @users = end_user.followings
-    end
-
-    def followers
-        end_user = EndUser.find(params[:end_user_id])
-        @users = end_user.followers
-    end
     
 end

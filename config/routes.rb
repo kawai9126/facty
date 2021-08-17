@@ -22,6 +22,8 @@ devise_for :end_users, controllers: {
         resource :favorites, only: [:create, :destroy]
     end
     resources :end_users,only: [:index,:show,:edit,:update,:create] do
+      get 'follow'
+      get 'follower'
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
