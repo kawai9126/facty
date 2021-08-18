@@ -2,6 +2,9 @@
 <% item.comments.each do |comment| %>
   <table class='comment'>
     <tr>
+      <td>
+        <%= attachment_image_tag comment.end_user, :profile_image, format: 'jpeg',size: "50x50", fallback: "no_image.jpg", class:"rounded-circle" %>
+      </td>
       <td class='comment_name'>
         <%= comment.end_user.nick_name %>
       </td>
