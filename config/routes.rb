@@ -14,6 +14,7 @@ devise_for :end_users, controllers: {
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root to: 'homes#top'
+  get 'home/about' => 'homes#about'
 
 #ユーザー側  
   namespace :public do

@@ -22,9 +22,9 @@
         <div>
         <% if @user.id != current_end_user.id %>
             <% if current_end_user.following?(@user) %>
-                <%= link_to "フォロー外す", public_end_user_relationships_path(@user.id), method: :delete, class: "btn btn-primary" %>
+                <%= link_to "フォロー外す", public_end_user_relationships_path(@user.id), method: :delete, class: "btn btn-outline-primary" %>
             <% else %>
-                <%= link_to "フォローする", public_end_user_relationships_path(@user.id), method: :post, class: "btn btn-success" %>
+                <%= link_to "フォローする", public_end_user_relationships_path(@user.id), method: :post, class: "btn btn-outline-success btn-lg" %>
             <% end %>
         <% end %>
         </div>

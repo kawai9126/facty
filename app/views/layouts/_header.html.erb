@@ -45,6 +45,9 @@
                   </li>
                 <% else %>
                 <!--ログインしてないとき-->
+                  <li>
+                    <%= link_to '概要', home_about_path %>
+                  </li>
                   <li> 
                     <%= link_to '商品一覧', public_items_path %>
                   </li>
