@@ -45,4 +45,16 @@ class EndUser < ApplicationRecord
     end
     total
   end
+  
+  
+  def self.search(search,text)
+    if search 
+      @user = EndUser.where("nick_name like ?","%#{text}%")
+    else
+      @user = EndUser.none
+    end
+  end
+  
 end
+
+  

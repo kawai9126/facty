@@ -27,6 +27,14 @@
                   <li> 
                     <%= link_to 'ログアウト', destroy_end_user_session_path, method: :delete %>
                   </li>
+                  <li>
+                    <%= form_with url: searchs_path, method: :get, local: true do |f| %>
+                      <%= f.text_field :text  %>
+                      <%= f.select :faculty, [["ユーザー", "EndUser"],["商品", "Item"]] %>
+                      <%= f.hidden_field :search %>
+                      <%= f.submit "検索" %>
+                    <% end %>
+                  </li>
                 <% elsif admin_signed_in? %>
                   <li> 
                     <%= link_to '商品⼀覧 ',admin_items_path %>

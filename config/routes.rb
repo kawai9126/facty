@@ -15,6 +15,8 @@ devise_for :end_users, controllers: {
 
   root to: 'homes#top'
   get 'home/about' => 'homes#about'
+  
+  resources :searchs,only: [:index]
 
 #ユーザー側  
   namespace :public do

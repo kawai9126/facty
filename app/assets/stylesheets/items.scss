@@ -23,6 +23,11 @@
     font-size: 25px;
 }
 
+.item_flex{
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .item_index_new{
     margin-left: 200px;
     margin-top: 50px;

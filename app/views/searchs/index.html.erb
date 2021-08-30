@@ -1,0 +1,68 @@
+<% if @faculty == 'EndUser' %>
+    <h1 class='search'>
+        [<%= @text %>]の検索結果
+    </h1>
+<% else %>
+    <h1 class='search'>
+        [<%= @text %>]の検索結果
+    </h1>
+<% end %>
+<% if @faculty == 'EndUser' %>
+    <div class="col-md-8 offset-md-1">
+        <table class="table">
+            <tr>
+                <th>プロフィール画像</th>
+                <th>ニックネーム</th>
+                <th>自己紹介</th>
+                <th colspan="3"></th>
+            </tr>
+            <% @users.each do |user| %>
+            <tr>
+                <td>
+                    <%= attachment_image_tag user, :profile_image,  format: 'jpeg', size: "40x40", fallback: "no_image.jpg", class: "rounded-circle" %>
+                </td>
+                <td>
+                    <%= user.nick_name %>
+                </td>
+                <td>
+                    <%= user.introduction %>
+                </td>
+                <td>
+                    <%= link_to "詳細を見る",public_end_user_path(user) %>
+                </td>
+            </tr>
+            <% end %>
+        </table>
+    </div>
+<% else %>
+    <% @items.each do |item| %>
+    <div class='item_index'>
+        <div>
+            <%= link_to public_item_path(item.id) do %>
+            <%= attachment_image_tag item, :image, format: 'jpeg',size: "700x600", fallback: "no_image.jpg"%>
+        </div>
+        <div class='item_index_profil'>
+            <%= attachment_image_tag item.end_user, :profile_image, format: 'jpeg',size: "80x80", fallback: "no_image.jpg", class: "rounded-circle" %> <%= item.end_user.nick_name %>
+        </div>
+        <p>
+            商品名：<%= item.name %>
+        </p>
+        <p>
+            <%= item.contents %>
+        </p>
+        <p>
+            ジャンル：<%= item.genre.name %>
+        </p>
+        <p>
+            ¥<%= item.non_price.to_s(:delimited) %>
+        </p>
+        <p>
+            <%= item.created_at.strftime('%Y/%m/%d') %>
+        </p>
+        <% end %>
+        <div class="item_<%= item.id %>">
+            <%= render 'favorites', item: item %>
+        </div>
+    </div>
+    <% end %>
+<% end %>

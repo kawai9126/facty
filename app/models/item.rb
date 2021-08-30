@@ -19,5 +19,13 @@ class Item < ApplicationRecord
     def add_tax_price
         (self.non_price * 1.10).round
     end
+    
+    def self.search(search,text)
+        if search
+            @item = Item.where("name like ?","%#{text}%")
+        else
+            @item = Item.none
+        end
+    end
 
 end
